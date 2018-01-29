@@ -15,6 +15,11 @@
  */
 class action_plugin_cspheader extends DokuWiki_Action_Plugin
 {
+    /**
+     * CSP HTTP Header
+     */
+    const CSP_HEADER = 'Content-Security-Policy:';
+
     /** @var array CSP policy names */
     const policies = [
         'base-uri',
@@ -76,7 +81,7 @@ class action_plugin_cspheader extends DokuWiki_Action_Plugin
             $policies[$policy] = join(' ', $values);
         }
 
-        $cspheader = 'Content-Security-Policy:';
+        $cspheader = self::CSP_HEADER;
         foreach ($policies as $policy => $value) {
             $cspheader .= " $policy $value;";
         }
