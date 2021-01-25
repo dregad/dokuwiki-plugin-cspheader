@@ -7,11 +7,11 @@
  *
  * host-expr examples: http://*.foo.com, mail.foo.com:443, https://store.foo.com
  * Besides FQDNs there are some keywords which are allowed 'self', 'none' or data:-URIs
- * Documentation: https://developer.mozilla.org/en/Security/CSP/CSP_policy_directives
+ * Documentation: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
  *
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author     Matthias Schulte <post@lupo49.de>
- * @link       http://www.dokuwiki.org/plugin:cspheader
+ * @link       https://www.dokuwiki.org/plugin:cspheader
  */
 class action_plugin_cspheader extends DokuWiki_Action_Plugin
 {
