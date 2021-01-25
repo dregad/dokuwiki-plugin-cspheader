@@ -20,8 +20,11 @@ class action_plugin_cspheader extends DokuWiki_Action_Plugin
      */
     const CSP_HEADER = 'Content-Security-Policy:';
 
-    /** @var array CSP policy names */
-    const policies = [
+    /**
+     * @var array CSP directives names
+     * @link https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy#directives
+     */
+    const DIRECTIVES = [
         'base-uri',
         //'block-all-mixed-content', // this is a yes/no field and should be handled separately
         'child-src',
@@ -69,8 +72,8 @@ class action_plugin_cspheader extends DokuWiki_Action_Plugin
     public function handleHeadersSend(Doku_Event $event, $params)
     {
         $policies = [];
-        foreach (self::policies as $policy) {
-            $option = str_replace('-', '', $policy) . 'Value';
+        foreach (self::DIRECTIVES as $directive) {
+            $option = str_replace('-', '', $directive) . 'Value';
             $values = $this->getConf($option);
             $values = explode("\n", $values);
             $values = array_map('trim', $values);
@@ -78,12 +81,12 @@ class action_plugin_cspheader extends DokuWiki_Action_Plugin
             $values = array_filter($values);
             if (!count($values)) continue;
 
-            $policies[$policy] = join(' ', $values);
+            $policies[$directive] = join(' ', $values);
         }
 
         $cspheader = self::CSP_HEADER;
-        foreach ($policies as $policy => $value) {
-            $cspheader .= " $policy $value;";
+        foreach ($policies as $directive => $value) {
+            $cspheader .= " $directive $value;";
         }
 
         array_push($event->data, $cspheader);
