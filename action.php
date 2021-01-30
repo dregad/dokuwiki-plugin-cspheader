@@ -1,5 +1,4 @@
 <?php
-
 /**
  * DokuWiki Content Security Policy (CSP) plugin
  *
@@ -7,7 +6,7 @@
  *
  * host-expr examples: http://*.foo.com, mail.foo.com:443, https://store.foo.com
  * Besides FQDNs there are some keywords which are allowed 'self', 'none' or data:-URIs
- * Documentation: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
+ * @link https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
  *
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author     Matthias Schulte <post@lupo49.de>
@@ -57,7 +56,6 @@ class action_plugin_cspheader extends DokuWiki_Action_Plugin
         'worker-src',
     ];
 
-    /** @inheritDoc */
     public function register(Doku_Event_Handler $controller)
     {
         $controller->register_hook('ACTION_HEADERS_SEND', 'BEFORE', $this, 'handleHeadersSend');
