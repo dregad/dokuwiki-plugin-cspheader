@@ -66,6 +66,8 @@ class action_plugin_cspheader extends DokuWiki_Action_Plugin
      *
      * @param Doku_Event $event
      * @param $params
+     *
+     * @noinspection PhpUnused, PhpUnusedParameterInspection
      */
     public function handleHeadersSend(Doku_Event $event, $params)
     {
