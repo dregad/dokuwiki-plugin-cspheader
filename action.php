@@ -89,6 +89,11 @@ class action_plugin_cspheader extends DokuWiki_Action_Plugin
             $cspheader .= " $directive $value;";
         }
 
+        // create nonce for inline scripts and replace placeholder in header
+        $nonce = bin2hex(random_bytes(16));
+        putenv("NONCE=$nonce");
+        $cspheader = str_replace('NONCE', $nonce, $cspheader);
+
         array_push($event->data, $cspheader);
     }
 }
